@@ -1,4 +1,0 @@
-[submodule "stochastic_physics"]
-	path = stochastic_physics
-	url = https://github.com/NOAA-PSL/stochy_land
-	branch = land_ens
