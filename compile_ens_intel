@@ -4,32 +4,11 @@ compile_all=1
 #DEBUG=YES
 DEBUG=NO
 
-module purge
+#make sure to load modules
+# source ../stochy_mods_gaeac6 or ../stocy_mods_ursa
 
-module use /contrib/spack-stack/spack-stack-1.9.2/envs/ue-oneapi-2024.2.1/install/modulefiles/Core
-
-module load stack-oneapi/2024.2.1
-module load stack-intel-oneapi-mpi/2021.13
-
-module load glibc/2.34
-module load zlib/1.2.13
-module load curl/8.10.1
-module load hdf5/1.14.3
-module load netcdf-c/4.9.2 
-module load netcdf-fortran/4.6.1
-module load parallel-netcdf/1.12.3
-module load parallelio/2.6.2
-module load nco/5.2.4
-
-module load fms/2024.02
-module load esmf/8.8.0
-module load eigen/3.4.0
-module load openblas/0.3.27
-
-module list
-
-FC=ifort
-MPIF90=mpiifort
+FC=ftn #ifort
+MPIF90=ftn  #mpiifort
 FMS_INC=${fms_ROOT}/include_r8
 FMS_LIB=${fms_ROOT}/lib
 ESMF_INC=${esmf_ROOT}/include
@@ -42,12 +21,14 @@ HDF5_INC=${hdf5_ROOT}/include
 HDF5_LIB=${hdf5_ROOT}/lib
 ZLIB_INC=${zlib_ROOT}/include
 ZLIB_LIB=${zlib_ROOT}/lib
-LPACK_INC=${OPENBLAS_ROOT}/include   #openblas_ROOT}/include 
-LPACK_LIB=${OPENBLAS_ROOT}/lib
-PNETCDF_LIB=/contrib/spack-stack/spack-stack-1.9.2/envs/ue-oneapi-2024.2.1/install/oneapi/2024.2.1/parallel-netcdf-1.12.3-oeqtpxg/lib
-PNETCDF_INC=/contrib/spack-stack/spack-stack-1.9.2/envs/ue-oneapi-2024.2.1/install/oneapi/2024.2.1/parallel-netcdf-1.12.3-oeqtpxg/include
-PIO_LIB=/contrib/spack-stack/spack-stack-1.9.2/envs/ue-oneapi-2024.2.1/install/oneapi/2024.2.1/parallelio-2.6.2-pmg6l7r/lib
-PIO_INC=/contrib/spack-stack/spack-stack-1.9.2/envs/ue-oneapi-2024.2.1/install/oneapi/2024.2.1/parallelio-2.6.2-pmg6l7r/include
+LPACK_INC=${OPENBLAS_ROOT:-$OLCF_OPENBLAS_ROOT}/include   #openblas_ROOT}/include 
+LPACK_LIB=${OPENBLAS_ROOT:-$OLCF_OPENBLAS_ROOT}/lib
+PNETCDF_ROOT=${parallel_netcdf_ROOT:-/contrib/spack-stack/spack-stack-1.9.2/envs/ue-oneapi-2024.2.1/install/oneapi/2024.2.1/parallel-netcdf-1.12.3-oeqtpxg/}
+PNETCDF_LIB=$PNETCDF_ROOT/lib
+PNETCDF_INC=$PNETCDF_ROOT/include
+PIO_ROOT=${parallelio_ROOT:-/contrib/spack-stack/spack-stack-1.9.2/envs/ue-oneapi-2024.2.1/install/oneapi/2024.2.1/parallelio-2.6.2-pmg6l7r/lib}
+PIO_LIB=$PIO_ROOT/lib
+PIO_INC=$PIO_ROOT/include
 
 rm EnsGen.x *.o *.a
 
