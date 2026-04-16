@@ -7,8 +7,9 @@ DEBUG=NO
 #make sure to load modules
 # source ../stochy_mods_gaeac6 or ../stocy_mods_ursa
 
-FC=ftn #ifort
-MPIF90=ftn  #mpiifort
+#FC=ftn #ifort
+#MPIF90=ftn  #mpiifort
+
 FMS_INC=${fms_ROOT}/include_r8
 FMS_LIB=${fms_ROOT}/lib
 ESMF_INC=${esmf_ROOT}/include
